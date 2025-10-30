@@ -48,6 +48,7 @@
 		"mock-property": "^1.1.0",
 		"npm-package-arg": "^13.0.1",
 		"pacote": "^21.0.3",
+		"pargs": "^1.0.0",
 		"tmp": "^0.2.5"
 	},
 	"devDependencies": {

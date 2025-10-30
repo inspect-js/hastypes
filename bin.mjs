@@ -1,19 +1,16 @@
 #! /usr/bin/env node
 
-import { readFileSync } from 'fs';
-import { join } from 'path';
-
 import npa from 'npm-package-arg';
 
-import pargs from './pargs.mjs';
-
-const help = readFileSync(join(import.meta.dirname, './help.txt'), 'utf8');
+import pargs from 'pargs';
 
 const {
-	positionals,
+	errors,
+	help,
+	positionals: [specifier],
 	values: { before },
-} = pargs(help, import.meta.url, {
-	allowPositionals: true,
+} = await pargs(import.meta.filename, {
+	allowPositionals: 1,
 	options: {
 		before: {
 			type: 'string',
@@ -21,21 +18,15 @@ const {
 	},
 });
 
-const specifiers = positionals.slice(1);
-
-if (specifiers.length !== 1) {
-	console.error('You must provide exactly one specifier');
-	process.exit(1);
-}
-
 if (typeof before !== 'undefined' && typeof before !== 'string') {
-	console.error('`before` option must be a valid Date value');
-	process.exit(1);
+	errors.push('`before` option must be a valid Date value');
 }
+
+await help();
 
 let name, rawSpec;
 try {
-	({ name, rawSpec } = npa(specifiers[0]));
+	({ name, rawSpec } = npa(specifier));
 	if (rawSpec === '*') {
 		rawSpec = 'latest';
 	}
@@ -51,7 +42,8 @@ import mockProperty from 'mock-property';
 
 // eslint-disable-next-line no-empty-function, no-extra-parens
 const restore = mockProperty(/** @type {Parameters<typeof mockProperty>[0]} */ (/** @type {unknown} */ (console)), 'error', { value() {} });
-const promise = hasTypes(specifiers[0], { before });
+// @ts-expect-error before is a string
+const promise = hasTypes(specifier, { before });
 
 promise.finally(() => {
 	restore();

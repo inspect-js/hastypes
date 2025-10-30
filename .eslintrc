@@ -9,13 +9,6 @@
 
 	"overrides": [
 		{
-			"files": "pargs.mjs",
-			"extends": "@ljharb/eslint-config/node/20",
-			"rules": {
-				"max-lines-per-function": 0,
-			},
-		},
-		{
 			"files": "./bin.mjs",
 			"extends": "@ljharb/eslint-config/node/20",
 		},
