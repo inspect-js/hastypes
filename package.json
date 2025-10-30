@@ -43,12 +43,12 @@
 	},
 	"homepage": "https://github.com/elliotblackburn/has-types#readme",
 	"dependencies": {
-		"dts-gen": "^0.10.4",
+		"dts-gen": "^0.10.6",
 		"get-dep-tree": "^2.0.0",
 		"mock-property": "^1.1.0",
-		"npm-package-arg": "^12.0.1",
-		"pacote": "^21.0.0",
-		"tmp": "^0.2.3"
+		"npm-package-arg": "^13.0.1",
+		"pacote": "^21.0.3",
+		"tmp": "^0.2.5"
 	},
 	"devDependencies": {
 		"@arethetypeswrong/cli": "^0.18.2",
