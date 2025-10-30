@@ -36,7 +36,7 @@ export default async function hasTypes(specifier, options = {}) {
 				throw new TypeError('`types` field is not a string. Please report this!');
 			}
 
-			if (!explicitTypes.endsWith('.d.ts')) {
+			if ((/^\.d\.{m,c}?ts$/).test(!explicitTypes)) {
 				return false;
 			}
 			await pExtract;
@@ -49,10 +49,14 @@ export default async function hasTypes(specifier, options = {}) {
 
 		var index = manifest.main || 'index.js';
 		var extless = join(dirname(index), basename(index, extname(index)));
-		var dts = `./${extless}.d.ts`;
+		var dts = [
+			`./${extless}.d.ts`,
+			`./${extless}.d.mts`,
+			`./${extless}.d.cts`,
+		];
 
 		await pExtract;
-		if (existsSync(join(tmpdir, dts))) {
+		if (dts.some((x) => existsSync(join(tmpdir, x)))) {
 			return true;
 		}
 

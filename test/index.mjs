@@ -2,7 +2,7 @@ import test from 'tape';
 
 import hasTypes from '../index.mjs';
 
-const before = '2024-12-01'; // update this date as desired
+const before = '2025-10-31'; // update this date as desired
 
 test('hasTypes', async (t) => {
 	t.comment(`date is pinned to ${before}`);
@@ -12,6 +12,7 @@ test('hasTypes', async (t) => {
 		'tape@4': '@types/tape@4',
 		'tape@latest': '@types/tape@latest',
 		tape: '@types/tape@latest',
+		'pargs@1.0.0': true,
 	};
 
 	// eslint-disable-next-line no-extra-parens, max-len
