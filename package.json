@@ -44,6 +44,7 @@
 	"homepage": "https://github.com/inspect-js/has-types#readme",
 	"dependencies": {
 		"dts-gen": "^0.10.6",
+		"es-errors": "^1.3.0",
 		"get-dep-tree": "^2.0.0",
 		"mock-property": "^1.1.0",
 		"npm-package-arg": "^13.0.1",

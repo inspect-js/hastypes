@@ -5,13 +5,14 @@ import { dirSync } from 'tmp';
 import npa from 'npm-package-arg';
 import pacote from 'pacote';
 import { getDTName } from 'dts-gen/dist/names.js';
+import $TypeError from 'es-errors/type';
 
 /** @type {import('.')} */
 export default async function hasTypes(specifier, options = {}) {
 	let { before } = options;
 	let date = typeof before !== 'undefined' && new Date(before);
 	if (date && isNaN(Number(date))) {
-		throw new TypeError('`before` option must be a valid Date value');
+		throw new $TypeError('`before` option must be a valid Date value');
 	}
 
 	const {
@@ -20,7 +21,7 @@ export default async function hasTypes(specifier, options = {}) {
 		fetchSpec,
 	} = npa(specifier);
 	if (!registry) {
-		throw new TypeError('specifier must be a registry package');
+		throw new $TypeError('specifier must be a registry package');
 	}
 
 	const { name: tmpdir, removeCallback } = dirSync({ unsafeCleanup: true });
@@ -33,7 +34,7 @@ export default async function hasTypes(specifier, options = {}) {
 		const explicitTypes = manifest.types;
 		if (explicitTypes) {
 			if (typeof explicitTypes !== 'string') {
-				throw new TypeError('`types` field is not a string. Please report this!');
+				throw new $TypeError('`types` field is not a string. Please report this!');
 			}
 
 			if ((/^\.d\.{m,c}?ts$/).test(!explicitTypes)) {
