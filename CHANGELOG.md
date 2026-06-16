@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v4.0.0](https://github.com/inspect-js/hastypes/compare/v3.0.0...v4.0.0) - 2026-06-16
+
+### Commits
+
+- [Fix] fall back to the package major when an exact `@types` version is unpublished [`53d528d`](https://github.com/inspect-js/hastypes/commit/53d528d056a2226f36a1049ee398834057ee8aad)
+- [Dev Deps] update `eslint`, `@ljharb/eslint-config`; migrate to flat config [`0278f1f`](https://github.com/inspect-js/hastypes/commit/0278f1f9742c710b2896f9779761362554b4db24)
+- [meta] update repo URL [`c49f908`](https://github.com/inspect-js/hastypes/commit/c49f908388bb287215691dceb8b457791b6da28e)
+- [Dev Deps] update `@arethetypeswrong/cli`, `@ljharb/eslint-config`, `@types/node`, `auto-changelog`, `eslint`, `npmignore`, `tape` [`301eb7a`](https://github.com/inspect-js/hastypes/commit/301eb7a0de12e959fa92d331c926ef1568ccb592)
+- [Breaking] drop node 22 [`6f4bcd5`](https://github.com/inspect-js/hastypes/commit/6f4bcd58096c288cd47bb8cf52f2125037446f25)
+- [Deps] update `dts-gen`, `get-dep-tree`, `npm-package-arg`, `pacote`, `pargs`, `tmp` [`9b0407e`](https://github.com/inspect-js/hastypes/commit/9b0407e30e088648ec32b3db6b2ca7d4b29a0749)
+- [actions] update workflows [`0706c54`](https://github.com/inspect-js/hastypes/commit/0706c54a643f24ad3abfde0b72b2723f12a5806b)
+- [Robustness] use `es-errors` [`1c55a8c`](https://github.com/inspect-js/hastypes/commit/1c55a8c4a27efbdd5431b3d4062bf223d40c9cbf)
+- [Fix] check the `types` field points at a `.d.ts`/`.d.mts`/`.d.cts` file [`836af5d`](https://github.com/inspect-js/hastypes/commit/836af5d7e87e97006e15c63335ecd2edc83b455a)
+- [Deps] update `npm-package-arg` [`4855450`](https://github.com/inspect-js/hastypes/commit/48554505b07f3a5fe5890f48c5ea8827b1f2eee3)
+- [Dev Deps] update `eslint` [`3b04724`](https://github.com/inspect-js/hastypes/commit/3b04724626bdb88776bf6f21ec4b1eee6aa2569c)
+- [readme] replace runkit CI badge with shields.io check-runs badge [`0bea164`](https://github.com/inspect-js/hastypes/commit/0bea164cc9eac12574f6da319ab3705884498f54)
+
 ## [v3.0.0](https://github.com/inspect-js/hastypes/compare/v2.0.0...v3.0.0) - 2025-10-30
 
 ### Commits
