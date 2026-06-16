@@ -31,7 +31,6 @@ try {
 		rawSpec = 'latest';
 	}
 } catch (e) {
-	// eslint-disable-next-line no-extra-parens
 	console.error(/** @type {Error} */ (e)?.message ?? 'Unknown error');
 	process.exit(1);
 }
@@ -40,9 +39,13 @@ import hasTypes from './index.mjs';
 
 import mockProperty from 'mock-property';
 
-// eslint-disable-next-line no-empty-function, no-extra-parens
-const restore = mockProperty(/** @type {Parameters<typeof mockProperty>[0]} */ (/** @type {unknown} */ (console)), 'error', { value() {} });
-// @ts-expect-error before is a string
+const restore = mockProperty(
+	/** @type {Record<keyof Console, Console[keyof Console]>} */
+	(console),
+	'error',
+	{ value() {} }, // eslint-disable-line no-empty-function
+);
+
 const promise = hasTypes(specifier, { before });
 
 promise.finally(() => {
@@ -51,5 +54,6 @@ promise.finally(() => {
 	console.error(e.message);
 	process.exit(1);
 }).then((r) => {
-	console.log(`${name}@${rawSpec} ${typeof r === 'string' ? r : r ? 'integrated' : 'none'}`);
+	const result = typeof r === 'string' ? r : r ? 'integrated' : 'none';
+	console.log(`${name}@${rawSpec} ${result}`);
 });

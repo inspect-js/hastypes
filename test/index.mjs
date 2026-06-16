@@ -15,7 +15,7 @@ test('hasTypes', async (t) => {
 		'pargs@1.0.0': true,
 	};
 
-	// eslint-disable-next-line no-extra-parens, max-len
+	// eslint-disable-next-line max-len
 	const results = /** @type {[keyof packages, PromiseSettledResult<`@types/${string}` | boolean>][]} */ (await Promise.all(Object.keys(packages).map(async (specifier) => [
 		specifier,
 		(await Promise.allSettled([hasTypes(specifier, { before })]))[0],
