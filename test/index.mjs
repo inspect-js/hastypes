@@ -13,6 +13,8 @@ test('hasTypes', async (t) => {
 		'tape@latest': '@types/tape@latest',
 		tape: '@types/tape@latest',
 		'pargs@1.0.0': true,
+		// runtime `express` is at 4.21, but `@types/express` caps at 4.17: falls back to the major
+		'express@4.21.2': '@types/express@4',
 	};
 
 	// eslint-disable-next-line max-len

@@ -7,6 +7,7 @@ export default [
 	{
 		files: ['**/*'],
 		rules: {
+			'func-style': ['error', 'declaration'],
 			'max-statements': 'off',
 			'no-extra-parens': 'off',
 		},

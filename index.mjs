@@ -5,12 +5,42 @@ import { dirSync } from 'tmp';
 import npa from 'npm-package-arg';
 import pacote from 'pacote';
 import { getDTName } from 'dts-gen/dist/names.js';
+import semver from 'semver';
 import $TypeError from 'es-errors/type';
 
-/** @type {import('.')} */
-export default async function hasTypes(specifier, options = {}) {
-	let { before } = options;
-	let date = typeof before !== 'undefined' && new Date(before);
+/**
+ * `@types/*` packages track the runtime package's major.minor, but the patch is their own
+ * and they often lag a minor behind. So when the exact range has no match, fall back to the
+ * same major before concluding that no `@types` package exists.
+ *
+ * @param {string} name
+ * @param {string} fetchSpec
+ * @param {false | Date} date
+ */
+async function dtSpec(name, fetchSpec, date) {
+	const dtName = getDTName(name);
+	const wanted = fetchSpec === '*' ? 'latest' : fetchSpec;
+
+	/** @param {string} range */
+	function exists(range) {
+		return pacote.manifest(`@types/${dtName}@${range}`, { before: date }).then(() => true, () => false);
+	}
+
+	if (await exists(wanted)) {
+		return /** @type {const} */ (`@types/${dtName}@${wanted}`);
+	}
+
+	const major = semver.coerce(wanted)?.major;
+	if (typeof major === 'number' && `${major}` !== wanted && await exists(`${major}`)) {
+		return /** @type {const} */ (`@types/${dtName}@${major}`);
+	}
+
+	return false;
+}
+
+/** @type {import('./index.d.mts').default} */
+export default async function hasTypes(specifier, { before } = {}) {
+	const date = typeof before !== 'undefined' && new Date(before);
 	if (date && isNaN(Number(date))) {
 		throw new $TypeError('`before` option must be a valid Date value');
 	}
@@ -28,44 +58,35 @@ export default async function hasTypes(specifier, options = {}) {
 
 	try {
 		const pExtract = pacote.extract(specifier, tmpdir, { before: date });
-		const manifest = pacote.manifest(specifier, { before: date });
+		const { main, types } = await pacote.manifest(specifier, { before: date });
 
 		// don't bother supporting typings
-		const explicitTypes = manifest.types;
-		if (explicitTypes) {
-			if (typeof explicitTypes !== 'string') {
+		if (types) {
+			if (typeof types !== 'string') {
 				throw new $TypeError('`types` field is not a string. Please report this!');
 			}
 
-			if ((/^\.d\.{m,c}?ts$/).test(!explicitTypes)) {
+			if ((/^\.d\.{m,c}?ts$/).test(!types)) {
 				return false;
 			}
 			await pExtract;
-			if (!existsSync(join(tmpdir, explicitTypes))) {
-				return false;
-			}
-
-			return true;
+			return existsSync(join(tmpdir, types));
 		}
 
-		var index = manifest.main || 'index.js';
-		var extless = join(dirname(index), basename(index, extname(index)));
-		var dts = [
+		const index = main || 'index.js';
+		const extless = join(dirname(index), basename(index, extname(index)));
+		const dts = /** @type {const} */ ([
 			`./${extless}.d.ts`,
 			`./${extless}.d.mts`,
 			`./${extless}.d.cts`,
-		];
+		]);
 
 		await pExtract;
 		if (dts.some((x) => existsSync(join(tmpdir, x)))) {
 			return true;
 		}
 
-		const dtSpec = `@types/${getDTName(name)}@${fetchSpec === '*' ? 'latest' : fetchSpec}`;
-
-		const result = await pacote.manifest(dtSpec, { before: date }).catch(() => null);
-
-		return result !== null && dtSpec;
+		return dtSpec(name, fetchSpec, date);
 	} finally {
 		removeCallback();
 	}
