@@ -6,7 +6,10 @@ import npa from 'npm-package-arg';
 import pacote from 'pacote';
 import { getDTName } from 'dts-gen/dist/names.js';
 import semver from 'semver';
+import regexTester from 'safe-regex-test';
 import $TypeError from 'es-errors/type';
+
+const isDeclarationFile = regexTester(/\.d\.[mc]?ts$/);
 
 /**
  * `@types/*` packages track the runtime package's major.minor, but the patch is their own
@@ -66,7 +69,7 @@ export default async function hasTypes(specifier, { before } = {}) {
 				throw new $TypeError('`types` field is not a string. Please report this!');
 			}
 
-			if ((/^\.d\.{m,c}?ts$/).test(!types)) {
+			if (!isDeclarationFile(types)) {
 				return false;
 			}
 			await pExtract;
