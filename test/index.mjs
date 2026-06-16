@@ -15,6 +15,8 @@ test('hasTypes', async (t) => {
 		'pargs@1.0.0': true,
 		// runtime `express` is at 4.21, but `@types/express` caps at 4.17: falls back to the major
 		'express@4.21.2': '@types/express@4',
+		// `chalk`'s `types` points at `./source/index.d.ts`; only a `fullMetadata` manifest exposes it
+		'chalk@5.3.0': true,
 	};
 
 	// eslint-disable-next-line max-len

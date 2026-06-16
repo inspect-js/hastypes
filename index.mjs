@@ -61,7 +61,8 @@ export default async function hasTypes(specifier, { before } = {}) {
 
 	try {
 		const pExtract = pacote.extract(specifier, tmpdir, { before: date });
-		const { main, types } = await pacote.manifest(specifier, { before: date });
+		// `fullMetadata` is required: a plain manifest omits `main`/`types` (they aren't install metadata)
+		const { main, types } = await pacote.manifest(specifier, { before: date, fullMetadata: true });
 
 		// don't bother supporting typings
 		if (types) {
