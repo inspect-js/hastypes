@@ -32,17 +32,17 @@ hasTypes('mdpdf@1').then(x => assert.equal(x, false));
 Simply clone the repo, `npm install`, and run `npm test`
 
 [package-url]: https://npmjs.org/package/hastypes
-[npm-version-svg]: https://versionbadg.es/elliotblackburn/has-types.svg
-[deps-svg]: https://david-dm.org/elliotblackburn/has-types.svg
-[deps-url]: https://david-dm.org/elliotblackburn/has-types
-[dev-deps-svg]: https://david-dm.org/elliotblackburn/has-types/dev-status.svg
-[dev-deps-url]: https://david-dm.org/elliotblackburn/has-types#info=devDependencies
+[npm-version-svg]: https://versionbadg.es/inspect-js/has-types.svg
+[deps-svg]: https://david-dm.org/inspect-js/has-types.svg
+[deps-url]: https://david-dm.org/inspect-js/has-types
+[dev-deps-svg]: https://david-dm.org/inspect-js/has-types/dev-status.svg
+[dev-deps-url]: https://david-dm.org/inspect-js/has-types#info=devDependencies
 [npm-badge-png]: https://nodei.co/npm/hastypes.png?downloads=true&stars=true
 [license-image]: https://img.shields.io/npm/l/hastypes.svg
 [license-url]: LICENSE
 [downloads-image]: https://img.shields.io/npm/dm/hastypes.svg
 [downloads-url]: https://npm-stat.com/charts.html?package=hastypes
-[codecov-image]: https://codecov.io/gh/elliotblackburn/has-types/branch/main/graphs/badge.svg
-[codecov-url]: https://app.codecov.io/gh/elliotblackburn/has-types/
+[codecov-image]: https://codecov.io/gh/inspect-js/has-types/branch/main/graphs/badge.svg
+[codecov-url]: https://app.codecov.io/gh/inspect-js/has-types/
 [actions-image]: https://img.shields.io/github/check-runs/inspect-js/hastypes/main
-[actions-url]: https://github.com/elliotblackburn/has-types/actions
+[actions-url]: https://github.com/inspect-js/has-types/actions
