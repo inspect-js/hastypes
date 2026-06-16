@@ -58,7 +58,7 @@
 		"@arethetypeswrong/cli": "^0.18.3",
 		"@ljharb/eslint-config": "^22.2.3",
 		"@ljharb/tsconfig": "^0.3.2",
-		"@types/node": "^22.19.21",
+		"@types/node": "^24.13.2",
 		"@types/npm-package-arg": "^6.1.4",
 		"@types/tmp": "^0.2",
 		"auto-changelog": "^2.6.0",
@@ -84,6 +84,6 @@
 		]
 	},
 	"engines": {
-		"node": "^22.21 || ^24.11 || >= 25.1"
+		"node": "^24.16 || >= 26.3"
 	}
 }
