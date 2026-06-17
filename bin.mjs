@@ -13,9 +13,12 @@ const {
 	allowPositionals: 1,
 	options: {
 		before: {
+			description: 'npm’s `before` option. Must be a valid date.',
+			placeholder: 'MM/DD/YYYY',
 			type: 'string',
 		},
 	},
+	positionals: [{ description: 'must be a valid registry specifier according to `npm-package-arg` (see https://www.npmjs.com/package/npm-package-arg)', name: 'package-specifier' }],
 });
 
 if (typeof before !== 'undefined' && typeof before !== 'string') {
