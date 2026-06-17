@@ -59,8 +59,9 @@ export default async function hasTypes(specifier, { before } = {}) {
 
 	const { name: tmpdir, removeCallback } = dirSync({ unsafeCleanup: true });
 
+	const pExtract = pacote.extract(specifier, tmpdir, { before: date }).catch(() => null);
+
 	try {
-		const pExtract = pacote.extract(specifier, tmpdir, { before: date });
 		// `fullMetadata` is required: a plain manifest omits `main`/`types` (they aren't install metadata)
 		const { main, types } = await pacote.manifest(specifier, { before: date, fullMetadata: true });
 
@@ -92,6 +93,7 @@ export default async function hasTypes(specifier, { before } = {}) {
 
 		return dtSpec(name, fetchSpec, date);
 	} finally {
+		await pExtract;
 		removeCallback();
 	}
 }

@@ -40,3 +40,13 @@ test('hasTypes', async (t) => {
 		}
 	});
 });
+
+test('an unresolvable specifier rejects cleanly instead of crashing', async (t) => {
+	// `resolve@2.0` has only prereleases, so the manifest ETARGETs; the eager extract must not reject unhandled
+	const error = await hasTypes('resolve@2.0', { before }).then(() => null, (e) => e);
+
+	t.ok(error, 'an unresolvable specifier rejects');
+	t.equal(error && error.code, 'ETARGET', 'rejects with ETARGET, rather than crashing the process');
+
+	t.end();
+});
