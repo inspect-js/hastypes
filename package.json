@@ -1,6 +1,6 @@
 {
 	"name": "hastypes",
-	"version": "4.0.2",
+	"version": "4.0.3",
 	"description": "Does the given package have TypeScript types?",
 	"bin": "./bin.mjs",
 	"main": "./index.mjs",
