@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v4.0.1](https://github.com/inspect-js/hastypes/compare/v4.0.0...v4.0.1) - 2026-06-16
+
+### Commits
+
+- [Fix] detect bundled types declared outside `./index.d.ts` [`1e43776`](https://github.com/inspect-js/hastypes/commit/1e437766f31125e741b065c21184143dcd7a1d11)
+- [Dev Deps] add `@types/semver` [`598c3f5`](https://github.com/inspect-js/hastypes/commit/598c3f57f39227071a8cc1bee0a6f12b7b95bead)
+
 ## [v4.0.0](https://github.com/inspect-js/hastypes/compare/v3.0.0...v4.0.0) - 2026-06-16
 
 ### Commits
