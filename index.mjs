@@ -5,11 +5,26 @@ import { dirSync } from 'tmp';
 import npa from 'npm-package-arg';
 import pacote from 'pacote';
 import { getDTName } from 'dts-gen/dist/names.js';
-import semver from 'semver';
+import { coerce } from 'semver';
 import regexTester from 'safe-regex-test';
 import $TypeError from 'es-errors/type';
 
+const { extract, manifest } = pacote;
+
 const isDeclarationFile = regexTester(/\.d\.[mc]?ts$/);
+
+/**
+ * @param {string} dtName
+ * @param {false | Date} date
+ * @param {Promise<string>} range
+ */
+async function resolve(dtName, date, range) {
+	return manifest(`@types/${dtName}@${range}`, { before: date })
+		.then(
+			(m) => m.version,
+			() => null,
+		);
+}
 
 /**
  * `@types/*` packages track the runtime package's major.minor, but the patch is their own
@@ -24,18 +39,17 @@ async function dtSpec(name, fetchSpec, date) {
 	const dtName = getDTName(name);
 	const wanted = fetchSpec === '*' ? 'latest' : fetchSpec;
 
-	/** @param {string} range */
-	function exists(range) {
-		return pacote.manifest(`@types/${dtName}@${range}`, { before: date }).then(() => true, () => false);
+	const exact = await resolve(dtName, date, wanted);
+	if (exact) {
+		return /** @type {const} */ (`@types/${dtName}@^${exact}`);
 	}
 
-	if (await exists(wanted)) {
-		return /** @type {const} */ (`@types/${dtName}@${wanted}`);
-	}
-
-	const major = semver.coerce(wanted)?.major;
-	if (typeof major === 'number' && `${major}` !== wanted && await exists(`${major}`)) {
-		return /** @type {const} */ (`@types/${dtName}@${major}`);
+	const major = coerce(wanted)?.major;
+	if (typeof major === 'number' && `${major}` !== wanted) {
+		const resolved = await resolve(dtName, date, `${major}`);
+		if (resolved) {
+			return /** @type {const} */ (`@types/${dtName}@^${resolved}`);
+		}
 	}
 
 	return false;
@@ -59,11 +73,11 @@ export default async function hasTypes(specifier, { before } = {}) {
 
 	const { name: tmpdir, removeCallback } = dirSync({ unsafeCleanup: true });
 
-	const pExtract = pacote.extract(specifier, tmpdir, { before: date }).catch(() => null);
+	const pExtract = extract(specifier, tmpdir, { before: date }).catch(() => null);
 
 	try {
 		// `fullMetadata` is required: a plain manifest omits `main`/`types` (they aren't install metadata)
-		const { main, types } = await pacote.manifest(specifier, { before: date, fullMetadata: true });
+		const { main, types } = await manifest(specifier, { before: date, fullMetadata: true });
 
 		// don't bother supporting typings
 		if (types) {

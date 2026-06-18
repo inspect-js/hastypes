@@ -9,12 +9,13 @@ test('hasTypes', async (t) => {
 
 	const packages = {
 		'has-proto': true,
-		'tape@4': '@types/tape@4',
-		'tape@latest': '@types/tape@latest',
-		tape: '@types/tape@latest',
+		// the returned `@types` specifier is always the fully resolved version as a caret range, not the queried range
+		'tape@4': '@types/tape@^4.13.4',
+		'tape@latest': '@types/tape@^5.8.1',
+		tape: '@types/tape@^5.8.1',
 		'pargs@1.0.0': true,
 		// runtime `express` is at 4.21, but `@types/express` caps at 4.17: falls back to the major
-		'express@4.21.2': '@types/express@4',
+		'express@4.21.2': '@types/express@^4.17.25',
 		// `chalk`'s `types` points at `./source/index.d.ts`; only a `fullMetadata` manifest exposes it
 		'chalk@5.3.0': true,
 	};
