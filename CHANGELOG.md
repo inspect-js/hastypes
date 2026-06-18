@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v4.0.4](https://github.com/inspect-js/hastypes/compare/v4.0.3...v4.0.4) - 2026-06-18
+
+### Commits
+
+- [Fix] return the fully-resolved `@types` version rather than the queried range [`133036d`](https://github.com/inspect-js/hastypes/commit/133036dbf57abc88cb857be1d3ab4dcc7639cfdc)
+- [Deps] update `pargs` [`52c08db`](https://github.com/inspect-js/hastypes/commit/52c08db824a8a8765aa7bf8a954a034d27eed40e)
+- [Dev Deps] update `tape` [`74ec1e5`](https://github.com/inspect-js/hastypes/commit/74ec1e5186165d4c2caedb86dcf7ce6636825141)
+
 ## [v4.0.3](https://github.com/inspect-js/hastypes/compare/v4.0.2...v4.0.3) - 2026-06-17
 
 ### Commits
