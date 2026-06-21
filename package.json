@@ -86,8 +86,5 @@
 	},
 	"engines": {
 		"node": "^24.16 || >= 26.3"
-	},
-	"overrides": {
-		"yargs": "17.7.3-candidate.0"
 	}
 }
