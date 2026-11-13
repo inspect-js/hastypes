@@ -22,7 +22,7 @@ const {
 	positionals: [{ description: 'must be a valid registry specifier according to `npm-package-arg` (see https://www.npmjs.com/package/npm-package-arg)', name: 'package-specifier' }],
 });
 
-if (typeof before !== 'undefined' && typeof before !== 'string') {
+if (typeof before !== 'undefined' && isNaN(Number(new Date(before)))) {
 	errors.push('`before` option must be a valid Date value');
 }
 
