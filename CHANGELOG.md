@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v4.0.5](https://github.com/inspect-js/hastypes/compare/v4.0.4...v4.0.5) - 2026-11-12
+
+### Commits
+
+- [Fix] `bin`: require a package specifier, instead of crashing without one [`b962f5e`](https://github.com/inspect-js/hastypes/commit/b962f5e47c76642dcae37f61e9d5d5b990a0a68c)
+- [Tests] fix types for TypeScript 7 [`a43a142`](https://github.com/inspect-js/hastypes/commit/a43a142815310288b4d797dff29ef3adc344fb76)
+- [Fix] `bin`: print usage to stderr on errors, keeping stdout clean [`9fd2e14`](https://github.com/inspect-js/hastypes/commit/9fd2e14d0a0aef6c13cdd65ecd750dc97575b752)
+- [Dev Deps] update `@arethetypeswrong/cli`, `@ljharb/eslint-config`, `@types/node`, `@types/semver`, `auto-changelog`, `eslint`, `npmignore`, `tape` [`7bbd1ec`](https://github.com/inspect-js/hastypes/commit/7bbd1ec418051ae23f6e41564bea04f9a7156857)
+- [Fix] `bin`: report an invalid `--before` date as a usage error [`b1e5dd8`](https://github.com/inspect-js/hastypes/commit/b1e5dd8ae5dfe5b4f5a067901340359539779506)
+- [Deps] update `dts-gen`, `get-dep-tree`, `pacote`, `pargs`, `semver` [`25df6f3`](https://github.com/inspect-js/hastypes/commit/25df6f354590154751306476f1400b68ccb60d1b)
+- [Deps] update `mock-property`, `semver` [`1124969`](https://github.com/inspect-js/hastypes/commit/1124969194ba55a113804a8df1913ac2678aa7c5)
+- [meta] do not publish test files [`b6cce24`](https://github.com/inspect-js/hastypes/commit/b6cce24c1e2293d2fcbeae4873b9b0e0f562b4a3)
+- [meta] no need to publish attw config [`2bf36b4`](https://github.com/inspect-js/hastypes/commit/2bf36b43496a18feda58ef5e208e1bcc499f2439)
+- [meta] yargs published a fix [`a7b4b0c`](https://github.com/inspect-js/hastypes/commit/a7b4b0cc67636c4e1fb88ba71ee4f24748646c12)
+- [actions] set least-privilege `cache-mode` [`751113b`](https://github.com/inspect-js/hastypes/commit/751113bdb377ba83894726f1916284aba88b242d)
+
 ## [v4.0.4](https://github.com/inspect-js/hastypes/compare/v4.0.3...v4.0.4) - 2026-06-18
 
 ### Commits
