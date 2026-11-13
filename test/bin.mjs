@@ -29,3 +29,19 @@ test('bin: an invalid `--before` date is a usage error', async (t) => {
 	t.match(stderr, /`before` option must be a valid Date value/, 'reports the invalid date');
 	t.match(stdout + stderr, /Usage: hastypes/, 'prints usage');
 });
+
+test('bin: usage for an error goes to stderr, keeping stdout clean', async (t) => {
+	const { code, stdout, stderr } = await run(['hastypes', '--bogus']);
+
+	t.equal(code, 1, 'exits 1');
+	t.equal(stdout, '', 'nothing on stdout');
+	t.match(stderr, /Unknown option '--bogus'/, 'reports the error on stderr');
+	t.match(stderr, /Usage: hastypes/, 'prints usage on stderr');
+});
+
+test('bin: an explicit `--help` still goes to stdout', async (t) => {
+	const { code, stdout } = await run(['--help']);
+
+	t.equal(code, 0, 'exits 0');
+	t.match(stdout, /Usage: hastypes/, 'prints usage on stdout');
+});

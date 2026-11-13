@@ -20,6 +20,7 @@ const {
 		},
 	},
 	positionals: [{ description: 'must be a valid registry specifier according to `npm-package-arg` (see https://www.npmjs.com/package/npm-package-arg)', name: 'package-specifier' }],
+	usageOnError: 'stderr',
 });
 
 if (typeof before !== 'undefined' && isNaN(Number(new Date(before)))) {
