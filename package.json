@@ -55,20 +55,20 @@
 		"tmp": "^0.2.7"
 	},
 	"devDependencies": {
-		"@arethetypeswrong/cli": "^0.18.3",
-		"@ljharb/eslint-config": "^22.2.3",
+		"@arethetypeswrong/cli": "^0.18.5",
+		"@ljharb/eslint-config": "^22.2.5",
 		"@ljharb/tsconfig": "^0.3.2",
-		"@types/node": "^24.13.2",
+		"@types/node": "^24.19.2",
 		"@types/npm-package-arg": "^6.1.4",
-		"@types/semver": "^7.7.1",
+		"@types/semver": "^7.8.0",
 		"@types/tmp": "^0.2.6",
-		"auto-changelog": "^2.6.0",
-		"eslint": "^10.5.0",
+		"auto-changelog": "^2.7.0",
+		"eslint": "^10.14.0",
 		"in-publish": "^2.0.1",
 		"jiti": "^0.0.0",
-		"npmignore": "^0.3.5",
+		"npmignore": "^0.3.6",
 		"safe-publish-latest": "^2.0.0",
-		"tape": "^5.10.2",
+		"tape": "^5.10.3",
 		"typescript": "next"
 	},
 	"auto-changelog": {
