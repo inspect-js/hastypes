@@ -20,24 +20,19 @@ test('hasTypes', async (t) => {
 		'chalk@5.3.0': true,
 	};
 
-	// eslint-disable-next-line max-len
-	const results = /** @type {[keyof packages, PromiseSettledResult<`@types/${string}` | boolean>][]} */ (await Promise.all(Object.keys(packages).map(async (specifier) => [
+	const specifiers = /** @type {(keyof typeof packages)[]} */ (Object.keys(packages));
+
+	const results = await Promise.all(specifiers.map(async (specifier) => /** @type {const} */ ([
 		specifier,
 		(await Promise.allSettled([hasTypes(specifier, { before })]))[0],
 	])));
 
-	results.forEach(([specifier, {
-		status,
-		// @ts-expect-error yes, it exists on one half of the union
-		value,
-		// @ts-expect-error yes, it exists on one half of the union
-		reason,
-	}]) => {
-		t.equal(status, 'fulfilled', `expected ${specifier} to be fulfilled; got ${status}`);
-		if (status === 'fulfilled') {
-			t.equal(value, packages[specifier], `expected ${specifier} to be ${packages[specifier]}; got ${value}`);
+	results.forEach(([specifier, result]) => {
+		t.equal(result.status, 'fulfilled', `expected ${specifier} to be fulfilled; got ${result.status}`);
+		if (result.status === 'fulfilled') {
+			t.equal(result.value, packages[specifier], `expected ${specifier} to be ${packages[specifier]}; got ${result.value}`);
 		} else {
-			t.fail(reason);
+			t.fail(result.reason);
 		}
 	});
 });
