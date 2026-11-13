@@ -82,7 +82,8 @@
 	"publishConfig": {
 		"ignore": [
 			".github/workflows",
-			".attw.json"
+			".attw.json",
+			"test"
 		]
 	},
 	"engines": {
