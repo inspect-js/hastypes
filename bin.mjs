@@ -11,6 +11,7 @@ const {
 	values: { before },
 } = await pargs(import.meta.filename, {
 	allowPositionals: 1,
+	minPositionals: 1,
 	options: {
 		before: {
 			description: 'npm’s `before` option. Must be a valid date.',
